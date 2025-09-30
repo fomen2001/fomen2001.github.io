@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Valdes Joël — Portfolio GitHub</title>
+    <meta name="description" content="Portfolio dynamique de Valdes Joël (fomen2001), généré automatiquement depuis l'API GitHub." />
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg" />
+    <!-- Tailwind CDN (no build step required) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind config: enable dark mode via class
+      tailwind.config = { darkMode: 'class' };
+    </script>
+    <style>
+      /* Subtle card hover */
+      .lift { transition: transform .2s ease, box-shadow .2s ease; }
+      .lift:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,.08); }
+      .truncate-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+      .truncate-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100">
+    <!-- ===== Header / Nav ===== -->
+    <header class="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-slate-900/60 border-b border-slate-200/60 dark:border-slate-700">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+        <a href="#home" class="font-extrabold tracking-tight text-lg">Joël<span class="text-indigo-500">.AI</span></a>
+        <nav class="hidden md:flex gap-6 text-sm">
+          <a href="#about" class="hover:text-indigo-600">À propos</a>
+          <a href="#featured" class="hover:text-indigo-600">Projets phares</a>
+          <a href="#repos" class="hover:text-indigo-600">Tous les dépôts</a>
+          <a href="#contact" class="hover:text-indigo-600">Contact</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <button id="themeToggle" class="text-xs px-3 py-1 rounded-full border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800">🌙 / ☀️</button>
+          <a id="cvLink" href="#" class="text-xs px-3 py-1 rounded-full bg-indigo-600 text-white hover:bg-indigo-500">Télécharger le CV</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <section id="home" class="relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-indigo-600 font-semibold bg-indigo-50 dark:bg-indigo-900/30 px-3 py-1 rounded-full">Data • IA • Cloud</div>
+          <h1 class="mt-5 text-3xl sm:text-4xl md:text-5xl font-extrabold leading-tight">
+            <span id="name">Valdes Joël</span>
+            <span class="block text-slate-500 dark:text-slate-400 text-xl sm:text-2xl font-medium mt-2">aka <span class="font-semibold">@<span id="login">fomen2001</span></span></span>
+          </h1>
+          <p id="bio" class="mt-4 text-slate-600 dark:text-slate-300 max-w-prose">
+            Étudiant M1 Data & IA — projets en vision par ordinateur, data engineering et web.<br />
+            Ce portfolio affiche automatiquement mes dépôts GitHub.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a id="githubLink" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-800">Voir mon GitHub</a>
+            <a id="ctaFeatured" href="#featured" class="px-4 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-500">Voir les projets</a>
+          </div>
+          <dl class="mt-8 grid grid-cols-3 gap-4 text-center">
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <dt class="text-xs text-slate-500">Followers</dt>
+              <dd id="followers" class="font-bold text-lg">—</dd>
+            </div>
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <dt class="text-xs text-slate-500">Following</dt>
+              <dd id="following" class="font-bold text-lg">—</dd>
+            </div>
+            <div class="p-3 rounded-xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+              <dt class="text-xs text-slate-500">Repos</dt>
+              <dd id="public_repos" class="font-bold text-lg">—</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="relative">
+          <div class="aspect-square rounded-3xl overflow-hidden ring-1 ring-slate-200 dark:ring-slate-700 shadow-xl">
+            <img id="avatar" alt="Avatar GitHub" class="w-full h-full object-cover" src="https://avatars.githubusercontent.com/u/0?v=4" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
+    <section id="about" class="py-12 md:py-16 border-t border-slate-200 dark:border-slate-800">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold">À propos</h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-300">Je conçois des solutions data de bout en bout : collecte (ETL/ELT), analyse exploratoire, entraînement de modèles ML (vision, classification, séries temporelles), déploiement léger (Streamlit, GitHub Pages). Je travaille avec Python, SQL, TensorFlow/Keras, scikit‑learn et un peu de Laravel/PHP pour le web.</p>
+        <ul class="mt-4 flex flex-wrap gap-2 text-xs">
+          <li class="px-3 py-1 rounded-full bg-white dark:bg-slate-800 border">Python</li>
+          <li class="px-3 py-1 rounded-full bg-white dark:bg-slate-800 border">Pandas</li>
+          <li class="px-3 py-1 rounded-full bg-white dark:bg-slate-800 border">scikit‑learn</li>
+          <li class="px-3 py-1 rounded-full bg-white dark:bg-slate-800 border">TensorFlow/Keras</li>
+          <li class="px-3 py-1 rounded-full bg-white dark:bg-slate-800 border">Streamlit</li>
+          <li class="px-3 py-1 rounded-full bg-white dark:bg-slate-800 border">SQL</li>
+          <li class="px-3 py-1 rounded-full bg-white dark:bg-slate-800 border">Git/GitHub</li>
+          <li class="px-3 py-1 rounded-full bg-white dark:bg-slate-800 border">Laravel/PHP</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Featured Projects (Pinned) ===== -->
+    <section id="featured" class="py-12 md:py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between gap-4">
+          <h2 class="text-2xl font-bold">Projets phares</h2>
+          <div class="text-sm text-slate-500">Basé sur une liste de dépôts sélectionnés (modifiable dans le code).</div>
+        </div>
+        <div id="featuredGrid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ===== All Repositories ===== -->
+    <section id="repos" class="py-12 md:py-16 bg-white dark:bg-slate-950 border-y border-slate-200 dark:border-slate-800">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+          <h2 class="text-2xl font-bold">Tous les dépôts</h2>
+          <div class="flex flex-wrap gap-3">
+            <input id="searchInput" type="search" placeholder="Rechercher…" class="px-3 py-2 rounded-xl border bg-transparent border-slate-300 dark:border-slate-700 w-64" />
+            <select id="langSelect" class="px-3 py-2 rounded-xl border bg-transparent border-slate-300 dark:border-slate-700">
+              <option value="">Langage (tous)</option>
+            </select>
+            <select id="sortSelect" class="px-3 py-2 rounded-xl border bg-transparent border-slate-300 dark:border-slate-700">
+              <option value="updated">Tri: mis à jour</option>
+              <option value="stars">Tri: étoiles</option>
+              <option value="name">Tri: nom</option>
+            </select>
+          </div>
+        </div>
+        <div id="repoGrid" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+
+    <!-- ===== Contact ===== -->
+    <section id="contact" class="py-12 md:py-16">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold">Contact</h2>
+        <p class="mt-3 text-slate-600 dark:text-slate-300">Dispo pour une alternance à partir de janvier 2026 (Data / IA / Cloud). Écrivez‑moi ou suivez mes projets :</p>
+        <div class="mt-5 flex flex-wrap gap-3">
+          <a id="contactGithub" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800">GitHub</a>
+          <a href="mailto:valdes.joel.tsatsop@gmail.com" class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800">Email</a>
+          <a href="https://x.com/joeltsatsop" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800">X / Twitter</a>
+          <a href="https://facebook.com/valdestsatsop" target="_blank" rel="noopener" class="px-4 py-2 rounded-xl border hover:bg-slate-100 dark:hover:bg-slate-800">Facebook</a>
+          <!-- Lien LinkedIn à mettre à jour -->
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-8 text-center text-sm text-slate-500">
+      <div class="max-w-7xl mx-auto px-4">© <span id="year"></span> Valdes Joël — Généré par l'API GitHub • Fait avec ❤️ et Tailwind</div>
+    </footer>
+
+    <!-- ===== App Script ===== -->
+    <script>
+      const username = 'fomen2001';
+      // Mettez ici les dépôts que vous souhaitez mettre en avant
+      const pinnedRepos = [
+        'Projet-de-D-tection-et-Reconnaissance-d-Objets-avec-Deep-Learning',
+        'i_am_learning_streamlit',
+        'DataLab',
+        'UPTIIMUM_WEB_DOCUMENTATION',
+        'maladie-cardiaque',
+        'fomen_portfolio'
+      ];
+
+      const $ = (sel) => document.querySelector(sel);
+      const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+      const fmt = new Intl.NumberFormat('fr-FR');
+
+      function timeAgo(dateStr) {
+        const d = new Date(dateStr); const now = new Date();
+        const seconds = Math.floor((now - d) / 1000);
+        const rtf = new Intl.RelativeTimeFormat('fr', { numeric: 'auto' });
+        const map = { year: 31536000, month: 2592000, week: 604800, day: 86400, hour: 3600, minute: 60 };
+        for (const [unit, sec] of Object.entries(map)) {
+          const v = Math.floor(seconds / sec);
+          if (Math.abs(v) >= 1) return rtf.format(-v, unit);
+        }
+        return "à l'instant";
+      }
+
+      function badge(text) {
+        return `<span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-[11px] border border-slate-200 dark:border-slate-700">${text}</span>`;
+      }
+
+      function repoCard(r) {
+        const homepage = r.homepage ? `<a href="${r.homepage}" target="_blank" class="underline underline-offset-2">Démo</a>` : '';
+        return `
+        <article class="lift p-4 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+          <div class="flex items-start justify-between gap-3">
+            <a href="${r.html_url}" target="_blank" rel="noopener" class="font-semibold hover:underline">${r.name}</a>
+            <span class="text-xs text-slate-500">${timeAgo(r.updated_at)}</span>
+          </div>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300 truncate-3">${r.description || '—'}</p>
+          <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+            ${r.language ? badge(r.language) : ''}
+            ${badge(`★ ${fmt.format(r.stargazers_count)}`)}
+            ${badge(`⑂ ${fmt.format(r.forks_count)}`)}
+            ${homepage}
+          </div>
+        </article>`;
+      }
+
+      async function fetchJSON(url) {
+        const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github+json' } });
+        if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+        return res.json();
+      }
+
+      async function loadUser() {
+        try {
+          const u = await fetchJSON(`https://api.github.com/users/${username}`);
+          $('#name').textContent = u.name || 'Valdes Joël';
+          $('#login').textContent = u.login;
+          $('#bio').textContent = u.bio || $('#bio').textContent;
+          $('#avatar').src = u.avatar_url;
+          $('#followers').textContent = fmt.format(u.followers);
+          $('#following').textContent = fmt.format(u.following);
+          $('#public_repos').textContent = fmt.format(u.public_repos);
+          $('#githubLink').href = u.html_url;
+          $('#contactGithub').href = u.html_url;
+        } catch (e) {
+          console.warn('User load failed', e);
+        }
+      }
+
+      function collectLanguages(repos) {
+        const langs = Array.from(new Set(repos.map(r => r.language).filter(Boolean))).sort();
+        const select = $('#langSelect');
+        langs.forEach(l => {
+          const opt = document.createElement('option');
+          opt.value = l; opt.textContent = l; select.appendChild(opt);
+        });
+      }
+
+      function applyFilters(items) {
+        const q = $('#searchInput').value.toLowerCase();
+        const lang = $('#langSelect').value;
+        const sort = $('#sortSelect').value;
+        let list = items.filter(r => (
+          (!lang || r.language === lang) &&
+          (!q || (r.name + ' ' + (r.description || '')).toLowerCase().includes(q))
+        ));
+        if (sort === 'stars') list.sort((a,b) => b.stargazers_count - a.stargazers_count);
+        else if (sort === 'name') list.sort((a,b) => a.name.localeCompare(b.name));
+        else list.sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at));
+        return list;
+      }
+
+      function renderRepoGrid(items) {
+        const grid = $('#repoGrid');
+        grid.innerHTML = items.map(repoCard).join('');
+      }
+
+      async function loadRepos() {
+        try {
+          const repos = await fetchJSON(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`);
+          collectLanguages(repos);
+          const render = () => renderRepoGrid(applyFilters(repos));
+          ['input','change'].forEach(ev => $('#searchInput').addEventListener(ev, render));
+          ['change'].forEach(ev => $('#langSelect').addEventListener(ev, render));
+          ['change'].forEach(ev => $('#sortSelect').addEventListener(ev, render));
+          render();
+        } catch (e) {
+          $('#repoGrid').innerHTML = `<div class="text-sm text-red-600">Échec du chargement des dépôts : ${e.message}. Réessayez plus tard.</div>`;
+        }
+      }
+
+      async function loadFeatured() {
+        const grid = $('#featuredGrid');
+        grid.innerHTML = '';
+        for (const name of pinnedRepos) {
+          try {
+            const r = await fetchJSON(`https://api.github.com/repos/${username}/${name}`);
+            grid.insertAdjacentHTML('beforeend', repoCard(r));
+          } catch (e) {
+            console.warn('Skip featured', name, e.message);
+          }
+        }
+        if (!grid.children.length) {
+          grid.innerHTML = '<p class="text-sm text-slate-500">Aucun projet sélectionné pour le moment.</p>';
+        }
+      }
+
+      // Theme toggle
+      function initTheme() {
+        const key = 'vj-theme';
+        const root = document.documentElement;
+        const btn = $('#themeToggle');
+        const apply = (mode) => root.classList.toggle('dark', mode === 'dark');
+        const saved = localStorage.getItem(key) || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        apply(saved);
+        btn.addEventListener('click', () => {
+          const mode = root.classList.contains('dark') ? 'light' : 'dark';
+          apply(mode); localStorage.setItem(key, mode);
+        });
+      }
+
+      // CV link placeholder — remplacez par votre PDF si souhaité
+      function initCV() {
+        const cv = $('#cvLink');
+        cv.href = '#';
+        cv.addEventListener('click', (e) => {
+          if (cv.getAttribute('href') === '#') {
+            e.preventDefault();
+            alert('Ajoutez votre CV : placez un fichier PDF dans \'/assets/CV_Valdes_Joel.pdf\' et mettez à jour le lien.');
+          }
+        });
+      }
+
+      // Init
+      document.addEventListener('DOMContentLoaded', () => {
+        $('#year').textContent = new Date().getFullYear();
+        initTheme();
+        initCV();
+        loadUser();
+        loadFeatured();
+        loadRepos();
+      });
+    </script>
+
+    <!--
+    📦 Déploiement GitHub Pages (rapide)
+    1) Créez un dépôt nommé:  fomen2001.github.io
+    2) Ajoutez ce fichier comme index.html à la racine, commit & push
+    3) GitHub Pages sert automatiquement le site à l'URL: https://fomen2001.github.io
+
+    Alternative (répertoire existant):
+    - Placez ce fichier dans le dossier /docs de n'importe quel dépôt
+    - Allez dans Settings → Pages → Source = Deploy from a branch → Branch = main /docs
+    - L'URL sera: https://<votre-user>.github.io/<nom-du-depot>
+
+    Astuces:
+    - Éditez le tableau pinnedRepos pour choisir vos projets phares
+    - Pour personnaliser les couleurs/sections, modifiez simplement le HTML/Tailwind (aucun build requis)
+    - Si l'API GitHub est limitée (60 requêtes/heure), réessayez un peu plus tard
+    -->
+  </body>
+</html>
